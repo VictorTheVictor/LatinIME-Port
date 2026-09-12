@@ -22,6 +22,12 @@ import android.preference.PreferenceActivity;
 public final class SettingsActivity extends PreferenceActivity {
     private static final String DEFAULT_FRAGMENT = SettingsFragment.class.getName();
 
+	@Override
+	protected boolean isValidFragment(String fragmentName)
+	{
+		return SettingsFragment.class.getName().equals(fragmentName) || AdditionalSubtypeSettings.class.getName().equals(fragmentName);
+	}
+
     @Override
     public Intent getIntent() {
         final Intent intent = super.getIntent();
