@@ -28,7 +28,7 @@ android
 	defaultConfig
 	{
 		applicationId 'cafe.raytek.victor.latinime'
-		minSdkVersion 18
+		minSdkVersion 21
 		targetSdkVersion 29
 		versionCode 1
 		versionName '1.0'
@@ -44,22 +44,21 @@ android
 		main
 		{
 			manifest.srcFile 'java/AndroidManifest.xml'
-			java.srcDirs = ['java/src']
+			java.srcDirs = [
+				'java/src',
+				'external/inputmethod-common/java'
+			]
 			res.srcDirs = ['java/res']
+			assets.srcDirs = ['java/assets']
+			aidl.srcDirs = ['java/src']
+			jni.srcDirs = []
+			jniLibs.srcDirs = ['libs']
 		}
 	}
 	
 	aaptOptions
 	{
 		noCompress 'dict'
-	}
-
-	externalNativeBuild
-	{
-		ndkBuild
-		{
-			path file('native/jni/Android.mk')
-		}
 	}
 
 	compileOptions
@@ -71,8 +70,5 @@ android
 
 dependencies
 {
-	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation fileTree(dir: '.', include: ['*.jar'])
-
 	implementation 'com.android.support:support-v13:28.0.0'
 }

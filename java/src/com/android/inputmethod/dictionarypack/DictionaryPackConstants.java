@@ -28,13 +28,13 @@ public class DictionaryPackConstants {
      * The root domain for the dictionary pack, upon which authorities and actions will append
      * their own distinctive strings.
      */
-    private static final String DICTIONARY_DOMAIN = "com.android.inputmethod.dictionarypack";
+    private static final String DICTIONARY_DOMAIN = "cafe.raytek.victor.latinime.dictionarypack";
 
     /**
      * Authority for the ContentProvider protocol.
      */
     // TODO: find some way to factorize this string with the one in the resources
-    public static final String AUTHORITY = DICTIONARY_DOMAIN + ".aosp";
+    public static final String AUTHORITY = DICTIONARY_DOMAIN;
 
     /**
      * The action of the intent for publishing that new dictionary data is available.
