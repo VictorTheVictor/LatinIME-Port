@@ -15,6 +15,7 @@
  */
 
 #include <cstring> // for memset()
+#include <unistd.h> // for getpagesize() and close()
 
 #define LOG_TAG "LatinIME: jni: BinaryDictionary"
 

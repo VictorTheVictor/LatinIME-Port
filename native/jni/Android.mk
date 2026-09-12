@@ -96,7 +96,6 @@ LOCAL_MODULE := libjni_latinime_common_static
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SDK_VERSION := 14
-LOCAL_NDK_STL_VARIANT := stlport_static
 
 include $(BUILD_STATIC_LIBRARY)
 ######################################
@@ -119,7 +118,6 @@ LOCAL_MODULE := libjni_latinime
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SDK_VERSION := 14
-LOCAL_NDK_STL_VARIANT := stlport_static
 LOCAL_LDFLAGS += -ldl
 
 include $(BUILD_SHARED_LIBRARY)

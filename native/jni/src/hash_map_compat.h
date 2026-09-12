@@ -19,16 +19,7 @@
 
 // TODO: Use std::unordered_map that has been standardized in C++11
 
-#ifdef __APPLE__
-#include <ext/hash_map>
-#else // __APPLE__
-#include <hash_map>
-#endif // __APPLE__
-
-#ifdef __SGI_STL_PORT
-#define hash_map_compat stlport::hash_map
-#else // __SGI_STL_PORT
-#define hash_map_compat __gnu_cxx::hash_map
-#endif // __SGI_STL_PORT
+#include <unordered_map>
+#define hash_map_compat std::unordered_map
 
 #endif // LATINIME_HASH_MAP_COMPAT_H
