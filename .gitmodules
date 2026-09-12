@@ -1,0 +1,3 @@
+[submodule "external/inputmethod-common"]
+	path = external/inputmethod-common
+	url = https://github.com/VictorTheVictor/inputmethod-common.git
