@@ -39,7 +39,7 @@ public class DictionaryInfoUtils {
     private static final String TAG = DictionaryInfoUtils.class.getSimpleName();
     // This class must be located in the same package as LatinIME.java.
     private static final String RESOURCE_PACKAGE_NAME =
-            DictionaryInfoUtils.class.getPackage().getName();
+            BuildConfig.APPLICATION_ID;
     private static final String DEFAULT_MAIN_DICT = "main";
     private static final String MAIN_DICT_PREFIX = "main_";
     // 6 digits - unicode is limited to 21 bits

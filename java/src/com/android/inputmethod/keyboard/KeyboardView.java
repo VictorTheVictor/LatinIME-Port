@@ -24,6 +24,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.PorterDuff;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
@@ -106,6 +107,7 @@ public class KeyboardView extends View {
     /** The keyboard bitmap buffer for faster updates */
     /** The clip region to draw keys */
     private final Region mClipRegion = new Region();
+	private final Path mClipPath = new Path();
     private Bitmap mOffscreenBuffer;
     /** The canvas for the above mutable keyboard bitmap */
     private final Canvas mOffscreenCanvas = new Canvas();
@@ -213,7 +215,15 @@ public class KeyboardView extends View {
                 // TODO: Stop using the offscreen canvas even when in software rendering
                 mOffscreenCanvas.setBitmap(mOffscreenBuffer);
             }
-            onDrawKeyboard(mOffscreenCanvas);
+            final int saveCount = mOffscreenCanvas.save();
+			try
+			{
+				onDrawKeyboard(mOffscreenCanvas);
+			}
+			finally
+			{
+				mOffscreenCanvas.restoreToCount(saveCount);
+			}
         }
         canvas.drawBitmap(mOffscreenBuffer, 0.0f, 0.0f, null);
     }
@@ -265,7 +275,9 @@ public class KeyboardView extends View {
             }
         }
         if (!isHardwareAccelerated) {
-            canvas.clipRegion(mClipRegion, Region.Op.REPLACE);
+            mClipPath.rewind();
+			mClipRegion.getBoundaryPath(mClipPath);
+			canvas.clipPath(mClipPath);
             // Draw keyboard background.
             canvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR);
             final Drawable background = getBackground();

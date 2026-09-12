@@ -89,6 +89,11 @@ final class BinaryDictionaryGetter {
      */
     public static AssetFileAddress loadFallbackResource(final Context context,
             final int fallbackResId) {
+		if (fallbackResId == 0)
+		{
+			Log.w(TAG, "No bundled dictionary resource found; skipping fallback.");
+			return null;
+		}
         final AssetFileDescriptor afd = context.getResources().openRawResourceFd(fallbackResId);
         if (afd == null) {
             Log.e(TAG, "Found the resource but cannot read it. Is it compressed? resId="
@@ -111,8 +116,8 @@ final class BinaryDictionaryGetter {
         final SharedPreferences mDictPreferences;
         public DictPackSettings(final Context context) {
             mDictPreferences = null == context ? null
-                    : context.getSharedPreferences(COMMON_PREFERENCES_NAME,
-                            Context.MODE_WORLD_READABLE | Context.MODE_MULTI_PROCESS);
+				: context.getSharedPreferences(COMMON_PREFERENCES_NAME,
+						Context.MODE_PRIVATE);
         }
         public boolean isWordListActive(final String dictId) {
             if (null == mDictPreferences) {
